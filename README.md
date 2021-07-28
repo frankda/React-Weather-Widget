@@ -39,8 +39,23 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Description
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- App will be splitted to two components: A: a widget component to show weather information; B: an editor
+- Widget: Props need to pass into widget are **Title**, **Unit** and **Show Wind** 
+- Editor: This component will display a form and a widget or card like component in a row on desktop. On mobile, widget will stack on top of editor
+- Show loading when fetching data from api
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Assumption
+
+- On desktop, editor will be in the center of screen
+- On mobile, editor should take full width of screen and start from top of screen
+- On mobile, widget will stack on top of editor
+- Widget will fit the height and width of editor
+- To maintain consistant styling in different platform, create custom radio button
+- Weather image should match current weather
+- C and show wind are checked in default 
+
+## Time
+
+- Documentation: 0.5 hrs
