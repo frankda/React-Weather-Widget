@@ -1,64 +1,75 @@
-# Getting Started with Create React App
+# Weather Widget
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Demo
 
-## Available Scripts
+[Demo page](https://elastic-cray-4007a8.netlify.app/)
 
-In the project directory, you can run:
+## Prerequisite
 
-### `yarn start`
+- Node v14+
+## Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Download repository in terminal
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+git clone https://github.com/frankda/React-Weather-Widget.git
+```
 
-### `yarn test`
+2. Install dependencies
+```bash
+# use yarn install
+yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# or use npm instal
+npm install
+```
 
-### `yarn build`
+3. Run app in the development mode.
+```bash
+yarn start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# or
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Description
 
+### Tech Stacks
+
+Tech stacks are used in this app are typescript, Reactjs and scss. Below is the resone why I choose these stack:
+
+- Typescript: As any small apps could grow big, adopting TypeScript might result in more robust software, while still being deployable where a regular JavaScript application would run.
+
+- Reactjs: As one of most popular framework, worth to use it, no need to say companies like Nine are also using it.
+
+- Scss: It has similar syntax to css but with more features. Use Scss can help me to write less code when following BEM methods and follow good css file structure like ITCSS.
+
+### Features
+
 - App will be splitted to two components: A: a widget component to show weather information; B: an editor
+
 - Widget: Props need to pass into widget are **Title**, **Unit** and **Show Wind**
-- Editor: This component will display a form and a widget or card like component in a row on desktop. On mobile, widget will stack on top of editor
+
 - Show loading when fetching data from api
 
 ## Assumption
 
-- Editor's max width is 755px from measurement
 - On desktop, editor will be in the center of screen
 - On mobile, editor should take full width of screen and start from top of screen
 - On mobile, widget will stack on top of editor
 - Widget will fit the height and width of editor
-- To maintain consistant styling in different platform, create custom radio button
+- If title is long, widget and edior should grow to wrap title in
+- To maintain consistant styling in different OS, create custom radio button
 - Weather image should match current weather
-- C and show wind are checked in default
+- Celsius and show wind are checked in default
 - Assume title will be uppercase according to design
 - Widget will have a title placeholder if there is no title passed
 
 ## Time
 
-- Documentation: 0.5 hrs
+- Documentation: 0.75 hrs
+- Coding: 3 hrs
+- Adjust minor styles according to design: 1 hr
