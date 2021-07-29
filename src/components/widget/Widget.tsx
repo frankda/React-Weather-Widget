@@ -40,6 +40,9 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps) => {
                     setWeatherData(res.data);
                     setLoading(false);
                 })
+                .catch((err) => {
+                    setError(true);
+                })
         }, (err) => {
             setError(true);
         });
