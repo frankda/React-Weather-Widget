@@ -28,10 +28,10 @@ interface IWeatherProps {
 
 const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps) => {
     const [ weatherData, setWeatherData ] = useState({} as IWeather);
-    const [ city, setCity ] = useState('' as string);
     const [ error, setError ] = useState(false as boolean);
     const [ loading, setLoading ] = useState(true as boolean);
 
+    // fetch weather and geo data when load component
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((pos) => {
             const { latitude, longitude } = pos.coords;
@@ -48,10 +48,6 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps) => {
         });
 
     }, [])
-
-    useEffect(() => {
-        setCity(weatherData.name)
-    }, [weatherData])
 
     const calculateTemperature = () => {
         const temp = weatherData.main.temp;
@@ -108,7 +104,7 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps) => {
                 <>
                     <img src={weatherImageSrc()} alt="weather" className="widget__weather-img" />
                     <div className="widget__weather-info">
-                        <div className="widget__city">{city}</div>
+                        <div className="widget__city">{weatherData.name}</div>
                         <div className="widget__temperature">{calculateTemperature()}&#176;</div>
                         <div className="widget__wind">
                             {renderWind()}
