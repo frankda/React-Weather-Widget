@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Widget from '../widget/Widget';
 import './Editor.scss';
 
 const Editor: React.FC = () => {
@@ -81,7 +82,11 @@ const Editor: React.FC = () => {
                 <span className="editor__verticle-divider" />
 
                 <div className="editor__display-panel">
-                    <div style={{height: '100%', width: '100%', backgroundColor: 'red'}}></div>
+                    <Widget
+                        widgetTitle={widgetTitle}
+                        isCelsius={isCelsius}
+                        showWind={showWind} />
+                    {/* <div style={{height: '100%', width: '100%', backgroundColor: 'red'}}></div> */}
                 </div>
             </div>
         </div>

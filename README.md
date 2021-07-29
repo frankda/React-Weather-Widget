@@ -42,19 +42,22 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## Description
 
 - App will be splitted to two components: A: a widget component to show weather information; B: an editor
-- Widget: Props need to pass into widget are **Title**, **Unit** and **Show Wind** 
+- Widget: Props need to pass into widget are **Title**, **Unit** and **Show Wind**
 - Editor: This component will display a form and a widget or card like component in a row on desktop. On mobile, widget will stack on top of editor
 - Show loading when fetching data from api
 
 ## Assumption
 
+- Editor's max width is 755px from measurement
 - On desktop, editor will be in the center of screen
 - On mobile, editor should take full width of screen and start from top of screen
 - On mobile, widget will stack on top of editor
 - Widget will fit the height and width of editor
 - To maintain consistant styling in different platform, create custom radio button
 - Weather image should match current weather
-- C and show wind are checked in default 
+- C and show wind are checked in default
+- Assume title will be uppercase according to design
+- Widget will have a title placeholder if there is no title passed
 
 ## Time
 
