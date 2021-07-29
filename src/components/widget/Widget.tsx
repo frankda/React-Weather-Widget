@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Widget.scss';
 import { MoonLoader } from 'react-spinners';
 import axios from 'axios';
