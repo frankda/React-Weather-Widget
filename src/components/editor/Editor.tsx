@@ -2,9 +2,17 @@ import React, { useState } from 'react';
 import './Editor.scss';
 
 const Editor: React.FC = () => {
-    // Assume temperature Celsius and show wind are checked in default
+    // Assumption:
+    // Title is not set as default
+    // Temperature default unit is Celsius
+    // Wind is shown in default
+    const [ widgetTitle, setWidgetTitle ] = useState('' as string);
     const [ isCelsius , setIsCelsius ] = useState(true as boolean);
-    const [ showWind, setShowWind ] = useState(true as boolean)
+    const [ showWind, setShowWind ] = useState(true as boolean);
+
+    const handleWidgetTitleChange = (event: React.FormEvent<HTMLInputElement>) => {
+        setWidgetTitle(event.currentTarget.value);
+    }
 
     return (
         <div className="editor">
@@ -12,57 +20,59 @@ const Editor: React.FC = () => {
 
                 <div className="editor__edit-panel">
                     <div className="editor__control-field">
-                        <span className="eidtor__control-label">Title</span>
-                        <input 
-                            type="text" 
-                            className="editor__text-input" 
-                            placeholder="Title of widget" />
+                        <span className="editor__control-label">Title</span>
+                        <input
+                            type="text"
+                            className="editor__text-input"
+                            placeholder="Title of widget"
+                            value = {widgetTitle}
+                            onChange={handleWidgetTitleChange} />
                     </div>
                     <div className="editor__control-field">
-                        <span className="eidtor__control-label">Temperature</span>
+                        <span className="editor__control-label">Temperature</span>
                         <div className="editor__radio-group">
                             <label className="editor__radio-btn">
-                                <input 
-                                    type="radio" 
-                                    className="editor__radio-input" 
-                                    name="temperature" 
+                                <input
+                                    type="radio"
+                                    className="editor__radio-input"
+                                    name="temperature"
                                     defaultChecked={isCelsius}
                                     onChange={() => setIsCelsius(true)} />
                                 <span className="editor__radio-icon" />
-                                <span>&#176;C</span>
+                                <span className="editor__radio-text">&#176;C</span>
                             </label>
                             <label className="editor__radio-btn">
-                                <input 
-                                    type="radio" 
-                                    className="editor__radio-input" 
+                                <input
+                                    type="radio"
+                                    className="editor__radio-input"
                                     name="temperature"
                                     onChange={() => setIsCelsius(false)} />
                                 <span className="editor__radio-icon" />
-                                <span>&#176;F</span>
+                                <span className="editor__radio-text">&#176;F</span>
                             </label>
                         </div>
                     </div>
                     <div className="editor__control-field">
-                        <span className="eidtor__control-label">Wind</span>
+                        <span className="editor__control-label">Wind</span>
                         <div className="editor__radio-group">
                             <label className="editor__radio-btn">
-                                <input 
-                                    type="radio" 
+                                <input
+                                    type="radio"
                                     className="editor__radio-input"
                                      name="wind"
                                      defaultChecked={showWind}
                                      onChange={() => setShowWind(true)}  />
                                 <span className="editor__radio-icon" />
-                                <span>On</span>
+                                <span className="editor__radio-text">On</span>
                             </label>
                             <label className="editor__radio-btn">
-                                <input 
-                                    type="radio" 
-                                    className="editor__radio-input" 
+                                <input
+                                    type="radio"
+                                    className="editor__radio-input"
                                     name="wind"
                                     onChange={() => setShowWind(false)} />
                                 <span className="editor__radio-icon" />
-                                <span>Off</span>
+                                <span className="editor__radio-text">Off</span>
                             </label>
                         </div>
                     </div>
