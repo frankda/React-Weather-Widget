@@ -53,6 +53,7 @@
         position: relative;
         cursor: pointer;
         width: 50%;
+        padding-left: 32px;
     }
     &__radio-input {
         display: none;
@@ -90,9 +91,6 @@
 			border-radius: 50%;
 			content: '';
         }
-    }
-    &__radio-text {
-        margin-left: 32px;
     }
 
     // desktop

@@ -89,9 +89,9 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps) => {
     const renderContent = () => {
         if (loading) {
             return (
-                <>
+                <div className="widget__loading" data-testid="loading">
                     <MoonLoader color="black" loading={loading} size={48} />
-                </>
+                </div>
             )
         } else if (error) {
             return (
@@ -117,7 +117,7 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps) => {
 
     return (
         <div className="widget">
-            <div className="widget__title">{widgetTitle.length ? widgetTitle.toUpperCase() : 'TITLE'}</div>
+            <div className="widget__title" data-testid="widget-title">{widgetTitle.length ? widgetTitle.toUpperCase() : 'TITLE'}</div>
             <div className="widget__content">
                 {renderContent()}
             </div>

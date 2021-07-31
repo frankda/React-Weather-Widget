@@ -12,13 +12,13 @@ const Editor: React.FC = () => {
     const [ showWind, setShowWind ] = useState(true as boolean);
 
     const handleWidgetTitleChange = (event: React.FormEvent<HTMLInputElement>) => {
+        event.preventDefault();
         setWidgetTitle(event.currentTarget.value);
     }
 
     return (
         <div className="editor">
             <div className="editor__container">
-
                 <div className="editor__edit-panel">
                     <div className="editor__control-field">
                         <span className="editor__control-label">Title</span>
@@ -40,7 +40,7 @@ const Editor: React.FC = () => {
                                     defaultChecked={isCelsius}
                                     onChange={() => setIsCelsius(true)} />
                                 <span className="editor__radio-icon" />
-                                <span className="editor__radio-text">&#176;C</span>
+                                &#176;C
                             </label>
                             <label className="editor__radio-btn">
                                 <input
@@ -49,7 +49,7 @@ const Editor: React.FC = () => {
                                     name="temperature"
                                     onChange={() => setIsCelsius(false)} />
                                 <span className="editor__radio-icon" />
-                                <span className="editor__radio-text">&#176;F</span>
+                                &#176;F
                             </label>
                         </div>
                     </div>
@@ -60,11 +60,11 @@ const Editor: React.FC = () => {
                                 <input
                                     type="radio"
                                     className="editor__radio-input"
-                                     name="wind"
-                                     defaultChecked={showWind}
-                                     onChange={() => setShowWind(true)}  />
+                                    name="wind"
+                                    defaultChecked={showWind}
+                                    onChange={() => setShowWind(true)}  />
                                 <span className="editor__radio-icon" />
-                                <span className="editor__radio-text">On</span>
+                                On
                             </label>
                             <label className="editor__radio-btn">
                                 <input
@@ -73,7 +73,7 @@ const Editor: React.FC = () => {
                                     name="wind"
                                     onChange={() => setShowWind(false)} />
                                 <span className="editor__radio-icon" />
-                                <span className="editor__radio-text">Off</span>
+                                Off
                             </label>
                         </div>
                     </div>

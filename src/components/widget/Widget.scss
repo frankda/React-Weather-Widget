@@ -14,6 +14,9 @@
     display: flex;
     margin-top: 36px;
   }
+  &__loading{
+    display: flex;
+  }
   &__weather-img {
     width: 40%;
     padding-right: 10px;

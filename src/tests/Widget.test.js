@@ -23,4 +23,9 @@ describe('Widget component', () => {
 
     expect(screen.getByText('test title'.toUpperCase())).toBeInTheDocument();
   });
+
+  it('show loading when component start loading', () => {
+    render(<Widget widgetTitle="test title" isCelsius={true} showWind={true} />);
+    expect(screen.queryByTestId('loading')).toBeInTheDocument();
+  })
 });
