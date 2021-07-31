@@ -1,10 +1,8 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import Widget from '../components/widget/Widget';
-import Button from './button';
 import axios from 'axios';
 import { act } from 'react-dom/test-utils';
-import userEvent from '@testing-library/user-event';
 
 afterEach(cleanup);
 
