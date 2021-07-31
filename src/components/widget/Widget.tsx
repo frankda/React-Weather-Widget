@@ -26,6 +26,12 @@ interface IWeatherProps {
     showWind: boolean
 }
 
+const geoOptions = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+};
+
 const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps) => {
     const [ weatherData, setWeatherData ] = useState({} as IWeather);
     const [ error, setError ] = useState(false as boolean);
@@ -45,9 +51,16 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps) => {
                 })
         }, (err) => {
             setError(true);
-        });
-
+            setLoading(false);
+        }, geoOptions);
     }, [])
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+        console.log(pos);
+    }, (err) => {
+        console.log(err);
+
+    });
 
     const calculateTemperature = () => {
         const temp = weatherData.main.temp;
