@@ -20,10 +20,22 @@ describe('Widget component', () => {
     })
 
     expect(screen.getByText('test title'.toUpperCase())).toBeInTheDocument();
+
+    // TODO: check temperature and city is rendered correctly
+    // expect(screen.getByTestId('widget-info')).toBeInTheDocument()
   });
 
   it('show loading when component start loading', () => {
     render(<Widget widgetTitle="test title" isCelsius={true} showWind={true} />);
     expect(screen.queryByTestId('loading')).toBeInTheDocument();
   })
+
+  // TODO: handle error cases
+  // it('renders error message if cannot get position', () => {
+  //   expect(screen.getByText('Please try later')).toBeInTheDocument();
+  // })
+  
+  // it('renders error message if cannot get data from api', () => {
+  //   expect(screen.getByText('Please try later')).toBeInTheDocument();
+  // })
 });

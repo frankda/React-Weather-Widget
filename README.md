@@ -68,6 +68,26 @@ Tech stacks are used in this app are typescript, Reactjs and scss. Below is the 
 - Assume title will be uppercase according to design
 - Widget will have a title placeholder if there is no title passed
 
+## Testing
+
+Currently testing is blocked by mocking `navigator.geolocation.getCurrentPosition` function, cannot return value in `success callback` of `getCurrentPosition`. So testing coverage is not 100% because of this reason. It is the next thing going to fix for this project.
+
+```bash
+-----------------------|---------|----------|---------|---------|---------------------------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-----------------------|---------|----------|---------|---------|---------------------------------------
+All files              |   35.82 |    17.65 |   28.57 |   35.82 |                                       
+ src                   |       0 |        0 |       0 |       0 |                                       
+  App.tsx              |       0 |      100 |       0 |       0 | 6                                     
+  index.tsx            |       0 |      100 |     100 |       0 | 7-17                                  
+  reportWebVitals.ts   |       0 |        0 |       0 |       0 | 3-10                                  
+ src/components/editor |      75 |      100 |      50 |      75 |                                       
+  Editor.tsx           |      75 |      100 |      50 |      75 | 41,65-74                              
+ src/components/widget |   34.09 |    23.08 |      25 |   34.09 |                                       
+  Widget.tsx           |   34.09 |    23.08 |      25 |   34.09 | 43-54,59-61,66-69,74-84,88-93,109-116 
+-----------------------|---------|----------|---------|---------|---------------------------------------
+```
+
 ## Time
 
 - Documentation: 0.75 hrs

@@ -116,10 +116,10 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps) => {
             return (
                 <>
                     <img src={weatherImageSrc()} alt="weather" className="widget__weather-img" />
-                    <div className="widget__weather-info">
+                    <div className="widget__weather-info" data-testid="widget-info">
                         <div className="widget__city">{weatherData.name}</div>
                         <div className="widget__temperature">{calculateTemperature()}&#176;</div>
-                        <div className="widget__wind">
+                        <div className="widget__wind" data-testid="widget-wind">
                             {renderWind()}
                         </div>
                     </div>
