@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Editor component convert kelvin to whole number celsius when check celsius 1`] = `
+exports['Editor component convert kelvin to whole number celsius when check celsius 1'] = `
 <DocumentFragment>
   <div
     class="editor"
@@ -148,7 +148,7 @@ exports[`Editor component convert kelvin to whole number celsius when check cels
 </DocumentFragment>
 `;
 
-exports[`Editor component convert kelvin to whole number fahrenheit when check fahrenheit 1`] = `
+exports['Editor component convert kelvin to whole number fahrenheit when check fahrenheit 1'] = `
 <DocumentFragment>
   <div
     class="editor"
@@ -295,7 +295,7 @@ exports[`Editor component convert kelvin to whole number fahrenheit when check f
 </DocumentFragment>
 `;
 
-exports[`Editor component should not show wind when wind off is checked 1`] = `
+exports['Editor component should not show wind when wind off is checked 1'] = `
 <DocumentFragment>
   <div
     class="editor"
@@ -442,7 +442,7 @@ exports[`Editor component should not show wind when wind off is checked 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Editor component shows uppercase title in widget when typing in text input 1`] = `
+exports['Editor component shows uppercase title in widget when typing in text input 1'] = `
 <DocumentFragment>
   <div
     class="editor"
