@@ -33,6 +33,16 @@ yarn start
 npm start
 ```
 
+Note: If app does not run properly, please run:
+
+```bash
+yarn lint
+
+# or
+
+npm run lint
+```
+
 4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Description
