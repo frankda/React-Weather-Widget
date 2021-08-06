@@ -55,12 +55,6 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps): React.Reac
     }, geoOptions);
   }, []);
 
-  navigator.geolocation.getCurrentPosition((pos) => {
-    console.log(pos);
-  }, (err) => {
-    console.log(err);
-  });
-
   const calculateTemperature = () => {
     const { temp } = weatherData.main;
     const f = Math.round((temp - 273.15) * 9 / 5 + 32);
