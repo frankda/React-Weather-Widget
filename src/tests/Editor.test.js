@@ -6,7 +6,7 @@ import {
 import { act } from 'react-dom/test-utils';
 import Editor from '../components/editor/Editor';
 import {
-  mockGetlocationSuccess, mockGetlocationError, mockAxiosGetSuccess, sydneyMockWeatherData,
+  mockGetlocationSuccess, mockAxiosGetSuccess, sydneyMockWeatherData,
 } from './utils/mocks';
 
 afterEach(cleanup);

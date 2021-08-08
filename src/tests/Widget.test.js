@@ -112,6 +112,3 @@ describe('Widget component', () => {
     expect(screen.getByRole('img', { name: 'weather-icon' })).toHaveAttribute('src', 'snowy.svg');
   });
 });
-
-// Export widget mock functions
-export { mockGetlocationSuccess, mockGetlocationError, mockAxiosGetSuccess };
