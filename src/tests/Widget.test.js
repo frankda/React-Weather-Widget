@@ -39,7 +39,7 @@ describe('Widget component', () => {
     asFragment = rendered.asFragment;
 
     expect(asFragment()).toMatchSnapshot();
-    expect(screen.queryByTestId('loading')).toBeInTheDocument();
+    expect(screen.getByTestId('loading')).toBeInTheDocument();
   });
 
   it('renders error message if cannot get position', async () => {
@@ -64,7 +64,7 @@ describe('Widget component', () => {
     });
 
     expect(asFragment()).toMatchSnapshot();
-    expect(screen.queryByText('Please try later', { selector: 'p' })).toBeInTheDocument();
+    expect(screen.getByText('Please try later', { selector: 'p' })).toBeInTheDocument();
   });
 
   it('shows a sunny icon if it is a good day!', async () => {
