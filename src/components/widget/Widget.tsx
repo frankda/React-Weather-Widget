@@ -28,7 +28,7 @@ interface IWeatherProps {
 
 const geoOptions = {
   enableHighAccuracy: true,
-  timeout: 5000,
+  timeout: 10000,
   maximumAge: 0,
 };
 
@@ -48,6 +48,7 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps): React.Reac
         })
         .catch(() => {
           setError(true);
+          setLoading(false);
         });
     }, () => {
       setError(true);
@@ -114,7 +115,7 @@ const Widget = ({ widgetTitle, isCelsius, showWind }: IWeatherProps): React.Reac
     }
     return (
       <>
-        <img src={weatherImageSrc()} alt="weather" className="widget__weather-img" />
+        <img src={weatherImageSrc()} aria-label="weather-icon" alt="weather" className="widget__weather-img" />
         <div className="widget__weather-info" data-testid="widget-info">
           <div className="widget__city">{weatherData.name}</div>
           <div className="widget__temperature">

@@ -7,12 +7,6 @@ import '@testing-library/jest-dom';
 // mock browser geo api
 // https://create-react-app.dev/docs/running-tests/#initializing-test-environment
 const mockGeolocation = {
-  getCurrentPosition: jest.fn()
-    .mockImplementationOnce((success) => Promise.resolve(success({
-      coords: {
-        latitude: 51.1,
-        longitude: 45.3,
-      },
-    }))),
+  getCurrentPosition: jest.fn(),
 };
 global.navigator.geolocation = mockGeolocation;

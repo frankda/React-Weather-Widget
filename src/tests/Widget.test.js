@@ -1,65 +1,117 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
-import axios from 'axios';
 import { act } from 'react-dom/test-utils';
 import Widget from '../components/widget/Widget';
+import {
+  mockGetlocationSuccess,
+  mockGetlocationError,
+  mockAxiosGetSuccess,
+  sydneyMockWeatherData,
+  mockAxiosGetError,
+} from './utils/mocks';
 
 afterEach(cleanup);
 
 jest.mock('axios');
 
-const sydneyWeatherData = {
-  coord: { lon: 151.2122, lat: -33.8668 },
-  weather: [{
-    id: 800, main: 'Clear', description: 'clear sky', icon: '01n',
-  }],
-  base: 'stations',
-  main: {
-    temp: 284.96,
-    feels_like: 283.84,
-    temp_min: 279.47,
-    temp_max: 288.07,
-    pressure: 1015,
-    humidity: 63,
-  },
-  visibility: 10000,
-  wind: { speed: 1.34, deg: 313, gust: 2.68 },
-  clouds: { all: 0 },
-  dt: 1627638496,
-  sys: {
-    type: 2, id: 2018875, country: 'AU', sunrise: 1627591756, sunset: 1627629223,
-  },
-  timezone: 36000,
-  id: 6619279,
-  name: 'Sydney',
-  cod: 200,
-};
+// get html fragment for snapshot testing
+let asFragment;
 
 describe('Widget component', () => {
-  it('renders with three props: widgetTitle, isCelsius, showWind', async () => {
-    axios.get.mockImplementationOnce(() => Promise.resolve({ data: sydneyWeatherData }));
+  const initialWidgetTitle = 'test title';
+
+  it('should render weather information if user allow to get location in browser', async () => {
+    mockAxiosGetSuccess(sydneyMockWeatherData);
+    mockGetlocationSuccess();
 
     await act(async () => {
-      render(<Widget widgetTitle="test title" isCelsius showWind />);
+      const rendered = render(<Widget widgetTitle={initialWidgetTitle} isCelsius showWind />);
+      asFragment = rendered.asFragment;
     });
 
-    expect(screen.getByText('test title'.toUpperCase())).toBeInTheDocument();
-
-    // TODO: check temperature and city is rendered correctly
-    // expect(screen.getByTestId('widget-info')).toBeInTheDocument()
+    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByText(initialWidgetTitle.toUpperCase())).toBeInTheDocument();
+    expect(screen.getByTestId('widget-info')).toBeInTheDocument();
   });
 
   it('show loading when component start loading', () => {
-    render(<Widget widgetTitle="test title" isCelsius showWind />);
+    const rendered = render(<Widget widgetTitle="test title" isCelsius showWind />);
+    asFragment = rendered.asFragment;
+
+    expect(asFragment()).toMatchSnapshot();
     expect(screen.queryByTestId('loading')).toBeInTheDocument();
   });
 
-  // TODO: handle error cases
-  // it('renders error message if cannot get position', () => {
-  //   expect(screen.getByText('Please try later')).toBeInTheDocument();
-  // })
+  it('renders error message if cannot get position', async () => {
+    mockGetlocationError();
 
-  // it('renders error message if cannot get data from api', () => {
-  //   expect(screen.getByText('Please try later')).toBeInTheDocument();
-  // })
+    await act(async () => {
+      const rendered = render(<Widget widgetTitle={initialWidgetTitle} isCelsius showWind />);
+      asFragment = rendered.asFragment;
+    });
+
+    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByText('Please try later', { selector: 'p' })).toBeInTheDocument();
+  });
+
+  it('renders error message if cannot get weather information', async () => {
+    mockGetlocationSuccess();
+    mockAxiosGetError();
+
+    await act(async () => {
+      const rendered = render(<Widget widgetTitle={initialWidgetTitle} isCelsius showWind />);
+      asFragment = rendered.asFragment;
+    });
+
+    expect(asFragment()).toMatchSnapshot();
+    expect(screen.queryByText('Please try later', { selector: 'p' })).toBeInTheDocument();
+  });
+
+  it('shows a sunny icon if it is a good day!', async () => {
+    mockGetlocationSuccess();
+    mockAxiosGetSuccess(sydneyMockWeatherData);
+
+    await act(async () => {
+      const rendered = render(<Widget widgetTitle={initialWidgetTitle} isCelsius showWind />);
+      asFragment = rendered.asFragment;
+    });
+
+    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByRole('img', { name: 'weather-icon' })).toHaveAttribute('src', 'day.svg');
+  });
+
+  it('shows a rainy icon if it is a rainy day!', async () => {
+    const mockRainyData = { ...sydneyMockWeatherData };
+    mockRainyData.weather[0].main = 'Rain';
+
+    mockGetlocationSuccess();
+    mockAxiosGetSuccess(mockRainyData);
+
+    await act(async () => {
+      const rendered = render(<Widget widgetTitle={initialWidgetTitle} isCelsius showWind />);
+      asFragment = rendered.asFragment;
+    });
+
+    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByRole('img', { name: 'weather-icon' })).toHaveAttribute('src', 'rainy.svg');
+  });
+
+  it('shows a snowy icon if it is a snowy day!', async () => {
+    const mockSnowyData = { ...sydneyMockWeatherData };
+    mockSnowyData.weather[0].main = 'Snow';
+
+    mockGetlocationSuccess();
+    mockAxiosGetSuccess(sydneyMockWeatherData);
+
+    await act(async () => {
+      const rendered = render(<Widget widgetTitle={initialWidgetTitle} isCelsius showWind />);
+      asFragment = rendered.asFragment;
+    });
+
+    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByRole('img', { name: 'weather-icon' })).toHaveAttribute('src', 'snowy.svg');
+  });
 });
+
+// Export widget mock functions
+export { mockGetlocationSuccess, mockGetlocationError, mockAxiosGetSuccess };

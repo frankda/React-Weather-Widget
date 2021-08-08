@@ -25,7 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint ./src/** --fix"
+    "lint": "./node_modules/.bin/eslint ./src/** --fix",
+    "testcoverage": "yarn test -- --coverage",
+    "updatesnapshot": "react-scripts test -u"
   },
   "eslintConfig": {
     "extends": [
